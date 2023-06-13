@@ -13,7 +13,16 @@ Vue.component('header-component', {
     `
   })
 
-
+  Vue.component('footer-component', {
+    template: `
+    <div 
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border border-ligh">
+    <p class="text-center">Carolina Piñeiro <strong>
+        Parcial I - ADM N3C
+    </strong></p>
+    </div > 
+    `
+  })
 
 const app = new Vue ({
     el: "#contenedor",
