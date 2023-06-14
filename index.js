@@ -24,6 +24,39 @@ Vue.component('header-component', {
     `
   })
 
+
+
+Vue.component ('crear-tareas', {
+    template:`
+    <div id="application">
+
+    <section class="tareas">
+      <input type="text" id="taskTitle" placeholder="Tarea">
+      <input type="number" id="taskTime" placeholder="Horas" min="1" step="1">
+      <button @click="addTask" class="addTask button">
+        <img class="icon" src="./assets/mas.png" alt="Agregar tarea">
+      </button>
+    </section>
+
+    <section v-if="tasks.length > 0" class="section_tareas">
+      <div class="listaTareas">
+        <ul>
+          <li v-for="(task, key) in tasks" :key="key">
+            {{ task.title }} -> {{ task.time }} horas
+            <button @click="deleteTask" class="deleteTask button">
+              <img class="icon" src="./assets/borrar.png" alt="Borrar tarea">
+            </button>
+          </li>
+        </ul>
+      </div>
+    `
+})
+
+
+
+
+  
+
 const app = new Vue ({
     el: "#contenedor",
     data: {
