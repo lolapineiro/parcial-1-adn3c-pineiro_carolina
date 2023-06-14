@@ -1,68 +1,131 @@
-Vue.component('header-component', {
-    template: `
+Vue.component("header-component", {
+  template: `
     <div
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border border-ligh">
 
             <nav class="nav justify-content-center d-flex align-items-center">
                 <img class="logo" src="./images/logo.jpeg " alt="logo tejiendo ideas">
-                <a class="nav-link link-dark" href="./index.html" aria-current="page">Habitos</a>
+                <a class="nav-link link-dark" href="./index.html" aria-current="page">Diario de gratitud</a>
                 <a class="nav-link link-dark" href="./consejos.html">Consejos</a>
 
             </nav>
         </div>
-    `
-  })
+    `,
+});
 
-  Vue.component('footer-component', {
-    template: `
+Vue.component("footer-component", {
+  template: `
     <div 
-    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border border-ligh">
-    <p class="text-center">Carolina Piñeiro <strong>
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
+    <p class="text-center text-success"><span class="emphasized">Carolina Piñeiro</span> <strong>
         Parcial I - ADM N3C
     </strong></p>
     </div > 
-    `
-  })
+    `,
+});
 
+Vue.component("habito-agradecer", {
+  data: function () {
+    return {
+      agradecimiento: "",
+      si: true,
+      vacio: true, //No hay tareas
+      gracias: [],
+      editGracias: null,
+    };
+  },
 
-
-Vue.component ('crear-tareas', {
-    template:`
-    <div id="application">
-
-    <section class="tareas">
-      <input type="text" id="taskTitle" placeholder="Tarea">
-      <input type="number" id="taskTime" placeholder="Horas" min="1" step="1">
-      <button @click="addTask" class="addTask button">
-        <img class="icon" src="./assets/mas.png" alt="Agregar tarea">
-      </button>
-    </section>
-
-    <section v-if="tasks.length > 0" class="section_tareas">
-      <div class="listaTareas">
-        <ul>
-          <li v-for="(task, key) in tasks" :key="key">
-            {{ task.title }} -> {{ task.time }} horas
-            <button @click="deleteTask" class="deleteTask button">
-              <img class="icon" src="./assets/borrar.png" alt="Borrar tarea">
-            </button>
-          </li>
-        </ul>
-      </div>
-    `
-})
-
-
-
-
+  template: `
+  <div class="container">
   
+  <div class="d-flex">
+      <input v-model="agradecimiento" class="form-control me-2" type="text" placeholder="Hoy agradezco por..."
+        aria-label="Aprender a decir gracias">
+      <button type="button" class="btn" @click="nuevoGracias"><img src="./images/agregar-boton.png" alt="agregar gracias"></button>
+    </div>
 
-const app = new Vue ({
-    el: "#contenedor",
-    data: {
-        titulo: 'Creando hábitos épicos',
-        titulo2: 'Consejos de hoy y de siempre',
-        message: 'Recuerda que incorporar buenos hábitos lleva tiempo y esfuerzo, pero los beneficios para tu salud y bienestar valen la pena. ¡Empieza hoy mismo a cuidar de ti mismo/a y a cultivar una vida más saludable y equilibrada!'
-    }
-}); 
+    <div :class="si ? 'ingresado' : 'noIngresado'">
+      <p class="emphasized">Por favor escriba aqui sus agradecimientos diarios</p>
+    </div>
 
+    <table class="table mt-4 ">
+      <thead>
+        <tr>
+          <th scope="col">Agradecimientos</th>
+       
+        </tr>
+      </thead>
+
+      <template v-if="vacio">
+        <p>Agregue sus afirmaciones de hoy</p>
+      </template>
+    <template v-else>
+      <tbody>
+
+      
+        <tr v-for="(agradecimiento, escrito) in gracias" :key="escrito" class="mb-3">
+          <th scope="row">{{agradecimiento.escritura}}</th>
+
+          <td>
+            <button type="button" class="btn " @click="eliminar">
+              <img src="./images/eliminar.png" alt="Eliminar"></img>
+            </button>
+          </td>
+
+          <td>
+            <button type="button" class="btn" @click="editar(escrito)">
+              <img src="./images/lapiz.png"  alt="Editar"></img>
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </template>
+  </table>
+</div>    
+        `,
+
+
+  methods: {
+    nuevoGracias: function () {
+      if (this.agradecimiento.length === 0) {
+        this.si = false;
+        return;
+      }
+
+      if (this.edit == null) {
+        this.si = true;
+        this.vacio = false;
+        this.gracias.push({
+          escritura: this.agradecimiento,
+        });
+        this.agradecimiento = "";
+      } else {
+        this.gracias[this.edit].info = this.agradecimiento;
+        this.edit = null;
+        this.agradecimiento = "";
+      }
+    },
+
+    //Eliminar nota de agradecimiento
+    eliminar: function (escrito) {
+      this.gracias.splice(escrito, 1);
+    },
+
+    //Editar nota de agradecimiento
+    editar: function (escrito) {
+      this.agradecimiento = this.gracias[escrito].escritura;
+      this.edit = escrito;
+    },
+  },
+});
+
+const app = new Vue({
+  el: "#contenedor",
+  data: {
+    titulo: "Gracias... ♥",
+    titulo2: "El poder  de la gratitud",
+    message:
+      "Recuerda que incorporar buenos hábitos lleva tiempo y esfuerzo, pero los beneficios para tu salud y bienestar valen la pena. ¡Empieza hoy mismo a cuidar de ti mismo/a y a cultivar una vida más saludable y equilibrada!",
+  },
+});

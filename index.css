@@ -8,8 +8,14 @@ nav {
 
 h1{
     font-family: 'Dancing Script', cursive;
-}
+}¨
+
+
 
 footer {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.emphasized { 
+    font-style: italic; 
 }
