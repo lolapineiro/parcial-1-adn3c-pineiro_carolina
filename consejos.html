@@ -25,14 +25,32 @@
         <div class="container mt-5 mb-3">
             <h1 class="text-center">{{titulo2}}</h1>
 
+            <componente-multilinea v-for="consejo in consejos" :titulo="consejo.titulo" :mensaje="consejo.mensaje"
+                :imagen="consejo.imagen" :alt="consejo.alt"></componente-multilinea>
 
+            <div>
+                <h1></h1>
+            </div>
+
+
+
+            <template v-for="item in consejos">
+                <div class="card m-4 gap-3"> 
+                    <img class="card-img-top" :src="item.imagen" :alt="item.alt">
+                    <div class="card-body">
+                        <h4 class="card-title">{{item.titulo}}</h4>
+                        <p> {{item.mensaje}} </p>
+                    </div>
+                </div>
+            </template>
+
+
+
+            <footer-component></footer-component>
         </div>
 
-        <footer-component></footer-component>
-    </div>
-
-    <script src="./index.js"></script>
-    <script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script>
+        <script src="./index.js"></script>
+        <script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script>
 </body>
 
 </html>
