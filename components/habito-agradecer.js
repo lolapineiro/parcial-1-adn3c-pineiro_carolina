@@ -10,7 +10,6 @@ Vue.component("habito-agradecer", {
   },
 
   template: `
-  <div>
     <div class="container">
     
     <div class="d-flex">
@@ -58,7 +57,7 @@ Vue.component("habito-agradecer", {
       </template>
     </table>
   </div>    
-  </div>
+ 
           `,
 
   methods: {
