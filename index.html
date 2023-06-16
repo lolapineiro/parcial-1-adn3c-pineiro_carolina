@@ -13,35 +13,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <title>El poder de agradecer</title>
     <link rel="stylesheet" href="index.css">
-    
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
     <script src="./components/header-component.js"></script>
-    <script src="./"></script>
     <script src="./components/footer-component.js"></script>
     <script src="./components/habito-agradecer.js"></script>
-
 </head>
 
 <body>
-
     <div id="contenedor">
         <header-component></header-component>
 
         <div class="container mt-5 mb-3">
             <h1 class="text-center">{{titulo}}</h1>
-        
-<div class="container">
-    <p> {{message}} </p>
-</div>
 
-<div class="container">
-    <habito-agradecer></habito-agradecer>
-</div>
+            <div class="container">
+                <p> {{message}} </p>
+            </div>
 
-        <footer-component></footer-component>
-    </div>
+            <div class="container">
+                <habito-agradecer></habito-agradecer>
+            </div>
+            <div>
+                <footer-component></footer-component>
+            </div>
+        </div>
 
-   <script src="index.js"></script>
+        <script src="index.js"></script>
 </body>
 
 </html>
