@@ -118,7 +118,12 @@ Vue.component("habito-agradecer", {
       this.edit = escrito;
     },
   },
+
+ 
 });
+
+
+
 
 
 
@@ -129,6 +134,7 @@ const app = new Vue({
     titulo2: "El poder  de la gratitud",
     message:
       "Practicar la gratitud es una excelente forma de cultivar una actitud positiva y mejorar tu bienestar emocional. Recuerda que practicar la gratitud requiere tiempo y esfuerzo, pero sus beneficios son numerosos. A medida que integres la gratitud en tu vida diaria, notarás cómo mejora tu perspectiva y bienestar general.",
+      texto: true,
       consejos: [
         {
             id: 0,
@@ -153,4 +159,5 @@ const app = new Vue({
         }
     ],
   },
+
 });
