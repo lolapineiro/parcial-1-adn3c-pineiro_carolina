@@ -1,16 +1,16 @@
-
 Vue.component("habito-agradecer", {
-    data: function () {
-      return {
-        agradecimiento: "",
-        si: true,
-        vacio: true,
-        gracias: [],
-        editGracias: null,
-      };
-    },
-  
-    template: `
+  data: function () {
+    return {
+      agradecimiento: "",
+      si: true,
+      vacio: true,
+      gracias: [],
+      editGracias: null,
+    };
+  },
+
+  template: `
+  <div>
     <div class="container">
     
     <div class="d-flex">
@@ -58,42 +58,39 @@ Vue.component("habito-agradecer", {
       </template>
     </table>
   </div>    
+  </div>
           `,
-  
-  
-    methods: {
-      nuevoGracias: function () {
-        if (this.agradecimiento.length === 0) {
-          this.si = false;
-          return;
-        }
-  
-        if (this.edit == null) {
-          this.si = true;
-          this.vacio = false;
-          this.gracias.push({
-            escritura: this.agradecimiento,
-          });
-          this.agradecimiento = "";
-        } else {
-          this.gracias[this.edit].info = this.agradecimiento;
-          this.edit = null;
-          this.agradecimiento = "";
-        }
-      },
-  
-      //Eliminar nota de agradecimiento
-      eliminar: function (escrito) {
-        this.gracias.splice(escrito, 1);
-      },
-  
-      //Editar nota de agradecimiento
-      editar: function (escrito) {
-        this.agradecimiento = this.gracias[escrito].escritura;
-        this.edit = escrito;
-      },
+
+  methods: {
+    nuevoGracias: function () {
+      if (this.agradecimiento.length === 0) {
+        this.si = false;
+        return;
+      }
+
+      if (this.edit == null) {
+        this.si = true;
+        this.vacio = false;
+        this.gracias.push({
+          escritura: this.agradecimiento,
+        });
+        this.agradecimiento = "";
+      } else {
+        this.gracias[this.edit].info = this.agradecimiento;
+        this.edit = null;
+        this.agradecimiento = "";
+      }
     },
-  
-   
-  });
-  
+
+    //Eliminar nota de agradecimiento
+    eliminar: function (escrito) {
+      this.gracias.splice(escrito, 1);
+    },
+
+    //Editar nota de agradecimiento
+    editar: function (escrito) {
+      this.agradecimiento = this.gracias[escrito].escritura;
+      this.edit = escrito;
+    },
+  },
+});

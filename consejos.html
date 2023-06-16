@@ -29,13 +29,15 @@
             <h1 class="text-center">{{titulo2}}</h1>
 
             <template v-for="item in consejos">
-                <div class="card m-3 gap-3">
-                    <img class="card-img-top" :src="item.imagen" :alt="item.alt">
-                    <div class="card-body">
-                        <h4 class="card-title">{{item.titulo}}</h4>
-                        <p v-show="texto"> {{item.mensaje}} </p>
-                        <p v-show="!texto"></p>
-                        <input type="checkbox" v-model="texto" /> <strong>ver +</strong>
+                <div class="container">
+                    <div class="card m-3 gap-3">
+                        <img class="card-img-top" :src="item.imagen" :alt="item.alt">
+                        <div class="card-body">
+                            <h4 class="card-title">{{item.titulo}}</h4>
+                            <p v-show="texto"> {{item.mensaje}} </p>
+                            <p v-show="!texto"></p>
+                            <input type="checkbox" v-model="texto" /> <strong>ver +</strong>
+                        </div>
                     </div>
                 </div>
             </template>
@@ -46,7 +48,7 @@
     </div>
 
 
-        <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js"></script>
 
 </body>
 
