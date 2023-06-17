@@ -2,7 +2,6 @@ Vue.component("habito-agradecer", {
   data: function () {
     return {
       agradecimiento: "",
-      si: true,
       vacio: true,
       gracias: [],
       editGracias: null,
@@ -18,7 +17,7 @@ Vue.component("habito-agradecer", {
         <button type="button" class="btn" @click="nuevoGracias"><img src="./images/agregar-boton.png" alt="agregar gracias"></button>
       </div>
   
-      <div :class="si ? 'ingresado' : 'noIngresado'">
+      <div>
         <p class="emphasized">Por favor escriba aqui sus agradecimientos diarios</p>
       </div>
   

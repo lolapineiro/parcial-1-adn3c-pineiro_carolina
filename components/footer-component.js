@@ -1,11 +1,21 @@
 
 Vue.component("footer-component", {
     template: `
-      <div 
-      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
-      <p class="text-center text-success"><span class="emphasized">Carolina Piñeiro</span> <strong>
-          Parcial I - ADM N3C
+      <div class="foot">
+      <div>
+      <p class="text-center"><span class="emphasized">Alumna</span> <strong>
+          Carolina Piñeiro
       </strong></p>
+      </div>
+      <div>
+      <p class="text-center"><span class="emphasized">Profesor:</span> <strong>
+      Sergio Daniel Medina </strong></p>
+      </div>
+      <div>
+      <p class="text-center"><strong>Parcial I - ADM N3C</strong></p>
+      </div>
+
+
       </div > 
       `,
   });
