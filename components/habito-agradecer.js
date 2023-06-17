@@ -7,6 +7,15 @@ Vue.component("habito-agradecer", {
       editGracias: null,
     };
   },
+  
+  mounted() {
+    // Cargar los datos desde el local storage al iniciar el componente
+    const storedGracias = localStorage.getItem("gracias");
+    if (storedGracias) {
+      this.gracias = JSON.parse(storedGracias);
+      this.vacio = false;
+    }
+  },
 
   template: `
     <div class="container">
@@ -62,11 +71,15 @@ Vue.component("habito-agradecer", {
   methods: {
     nuevoGracias: function () {
       if (this.agradecimiento.length === 0) {
-        this.si = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'O nooooo...',
+          text: 'Debes agregar algo que le guste para agradecer.',
+        });
         return;
       }
 
-      if (this.edit == null) {
+      if (this.editGracias == null) {
         this.si = true;
         this.vacio = false;
         this.gracias.push({
@@ -74,21 +87,41 @@ Vue.component("habito-agradecer", {
         });
         this.agradecimiento = "";
       } else {
-        this.gracias[this.edit].info = this.agradecimiento;
-        this.edit = null;
+        this.gracias[this.editGracias].escritura = this.agradecimiento;
+        this.editGracias = null;
         this.agradecimiento = "";
       }
+
+      // Guardar los datos en el local storage
+      localStorage.setItem("gracias", JSON.stringify(this.gracias));
+
+      // Mostrar el mensaje de agradecimiento y preguntar si desea agregar algo más
+      Swal.fire({
+        icon: 'success',
+        title: '¡Gracias por agregar algo lindo a la pagina!',
+        text: '¿Desea agregar algo más?',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+      }).then((result) => {
+        if (result.value) {
+          // El cliente desea agregar algo más
+        } else {
+          // El cliente no desea agregar más
+        }
+      });
     },
 
-    //Eliminar nota de agradecimiento
     eliminar: function (escrito) {
       this.gracias.splice(escrito, 1);
+
+      // Actualizar los datos en el local storage
+      localStorage.setItem("gracias", JSON.stringify(this.gracias));
     },
 
-    //Editar nota de agradecimiento
     editar: function (escrito) {
       this.agradecimiento = this.gracias[escrito].escritura;
-      this.edit = escrito;
+      this.editGracias = escrito;
     },
   },
 });
